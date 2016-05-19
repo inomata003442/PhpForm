@@ -9,9 +9,25 @@
         <p>性<input type="text" name="familynameInput"></p>
         <p>名<input type="text" name="firstnameInput"></p>
         <p>
+            性別
+            <input type="radio" name="sex" value="man">男
+            <input type="radio" name="sex" value="woman">女
+            <input type="radio" name="sex" value="unknown">不明
+        </p>
+        <p>住所<input type="text" name="from"></p>
+        <p>
             電話番号<input type="text" name="tel1">
             -<input type="text" name="tel2">
             -<input type="text" name="tel3">
+        </p>
+        <p>
+            メールアドレス<input type="text" name="mail">
+            @<input type="text" name="mail2">
+        </p>
+        <p>
+            当社をどこで知りましたか？
+            <input type="checkbox" name="knew" value="news">ニュース
+            <input type="checkbox" name="knew" value="school">学校
         </p>
         <p>
             <select name="prefectures">
@@ -20,21 +36,8 @@
             </select>
         </p>
         <p>
-            メールアドレス<input type="text" name="mail">
-            @<input type="text" name="mail2">
+            <textarea cols="100" rows="15" name="comments">質問内容を入力してください</textarea>
         </p>
-        <p>
-            性別
-            <input type="radio" name="sex" value="man">男
-            <input type="radio" name="sex" value="woman">女
-            <input type="radio" name="sex" value="unknown">不明
-        </p>
-        <p>
-            当社をどこで知りましたか？
-            <input type="checkbox" name="knew" value="news">ニュース
-            <input type="checkbox" name="knew" value="school">学校
-        </p>
-        <p>住所<input type="text" name="from"></p>
         <p><input type="submit" name"submit" value="送信"></p>
     </form>
 </body>
