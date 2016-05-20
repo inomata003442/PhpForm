@@ -53,12 +53,12 @@
                 <p>当社をどこで知りましたか？</p>
             </div>
             <div id="right">
-                <p><input type="text" name="familynameInput"></p>
-                <p><input type="text" name="firstnameInput"></p>
+                <p><input type="text" name="familyname"></p>
+                <p><input type="text" name="firstname"></p>
                 <p>
-                    <input type="radio" name="sex" value="男性">男
-                    <input type="radio" name="sex" value="女性">女
-                    <input type="radio" name="sex" value="性別不明">不明
+                    <input type="radio" name="sex" value="0">男性
+                    <input type="radio" name="sex" value="1">女性
+                    <input type="radio" name="sex" value="2">性別不明
                 </p>
                 <p><input type="text" name="from"></p>
                 <p>
@@ -71,13 +71,22 @@
                     @<input type="text" name="mail2">
                 </p>
                 <p>
-                    <input type="checkbox" name="knew" value="ニュース">ニュース
-                    <input type="checkbox" name="knew" value="学校">学校
+                    <input type="checkbox" name="knew[]" value="0">ニュース
+                    <input type="checkbox" name="knew[]" value="1">学校
+                    <input type="checkbox" name="knew[]" value="2">駅の広告
+                    <input type="checkbox" name="knew[]" value="3">ＣＭ
+                    <input type="checkbox" name="knew[]" value="4">その他
                 </p>
                 <p>
+                    <!--
+                    キーは全部数字で
+                    -->
                     <select name="question">
                         <option value="0" selected>質問のカテゴリを選択してください</option>
-                        <option value="1">質問１</option>
+                        <option value="1">製品について</option>
+                        <option value="2">当社について</option>
+                        <option value="3">採用について</option>
+                        <option value="4">その他</option>
                     </select>
                 </p>
             </div>
