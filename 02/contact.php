@@ -5,91 +5,228 @@
     <title>お問い合わせ</title>
     <style>
         /*
-        borderは開発用色枠
+        コメントアウトしたborderは開発用色枠
         */
         body{
-            border: solid 5px #000000;
+        /*    border: solid 3px #000000;    */
         }
-        h1{
-            width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            border: solid 5px #7FFF00;
-        }
-        form{
-            margin: 0 auto;
-            width: 800px;
-            border: solid 5px #DC143C;
-        }
-        p{
-            border: solid 5px #0000CD;
-        }
-        #left{
-            float: left;
-            border: solid 5px #FFD700;
-        }
-        #right{
-            float: right;
-            border: solid 5px #F0E68C;
-        }
+            #h1border{
+                border-bottom: solid 1px #008000;
+                box-shadow: 0px 1px 5px; /*横　縦　ぼかし*/
+                width: 800px;
+                height: 50px;
+                margin: 100px auto;
+            }
+                h1{
+                    border-left: solid 5px #008000;
+                /*    border: solid 3px #7FFF00;    */
+                }
+                    #h1word{
+                        padding-top: 6px;
+                        padding-bottom: 5px;
+                        margin-bottom: 10px;
+                        padding-left: 1em;
+                    /*    border : solid 3px #DC143C;   */
+                    }
+                    form{
+                        margin: 0 auto;
+                        width: 800px;
+                    /*    border: solid 3px #DC143C;    */
+                    }
+                        p{
+                        /*    border: solid 3px #0000CD;  */
+                        }
+                        #cover{
+                        /*    border: solid 3px #008000;    */
+                        }
+                            #line{
+                                display: table;
+                                width: 100%;
+                                margin: 30px;
+                            /*    border: solid 3px #C0C0C0;  */
+                            }
+                                #left{
+                                    display: table-cell;
+                                    width: 35%;
+                                /*    border: solid 3px #FFD700;    */
+                                }
+                                #right{
+                                    display: table-cell;
+                                    width: 65%;
+                                /*    border: solid 3px #F0E68C;    */
+                                }
+                            #right_stage{
+                                display: table;
+                            /*    border: solid 3px #48D1CC;    */
+                            }
+                                #right_stage_top{
+                                    display: table-row;
+                                /*    border: solid 3px #C71585;    */
+                                }
+                                #right_stage_bottom{
+                                    display: table-row;
+                                /*    border: solid 3px #A52A2A;    */
+
+                                }
+                            #bottom{
+                            /*    border: solid 3px #FF00FF;    */
+                                margin: 30px;
+                            }
+                                #category{
+                                /*    border: solid 3px #C0C0C0;  */
+                                    margin-bottom: 30px;
+                                }
+                                #textarea{
+                                /*    border: solid 3px #A52A2A;    */
+                                    margin-top:30px;
+                                    margin-bottom: 30px;
+                                }
+                                    #textarea_area{
+                                        width: 700px;
+                                        height: 100px;
+                                        resize: vertical;
+                                    }
+                                #submit_reset{
+                                    display: table;
+                                    text-align:center;
+                                /*  border : solid 3px #FF00FF;     */
+                                    width :100%;
+                                    margin: 30px;
+                                }
+                                    #submit{
+                                        display: table-cell;
+                                        margin: 30px;
+                                        width: 50%;
+                                    }
+                                        #button_submit{
+                                            font-size: 200%;
+                                            height:50px;
+                                            width:300px;
+                                        }
+                                    #reset{
+                                        display: table-cell;
+                                        width: 50%;
+                                    }
+                                        #button_reset{
+                                            font-size: 200%;
+                                            height:50px;
+                                            width:300px;
+                                        }
     </style>
 </head>
 <body>
-    <h1>お問い合わせ</h1>
-        <form action="result.php" method="POST">
-            <div id="left">
+    <div id="h1border">
+        <h1>
+            <div id="h1word">お問い合わせフォーム</div>
+        </h1>
+    </div>
+            <form action="result.php" method="POST">
                 <h2>お客様に関する情報</h2>
-                <!--
-                テキストボックスとかとあわせてテーブル化したい
-                その際、tableではなくulやdlを使ってcssであとから整形してあげるとよい
-                display:table,table-row,table-cellなど
-                -->
-                <p>性</p>
-                <p>名</p>
-                <p>性別</p>
-                <p>住所</p>
-                <p>電話番号</p>
-                <p>メールアドレス</p>
-                <p>当社をどこで知りましたか？</p>
-            </div>
-            <div id="right">
-                <p><input type="text" name="familynameInput"></p>
-                <p><input type="text" name="firstnameInput"></p>
-                <p>
-                    <input type="radio" name="sex" value="男性">男
-                    <input type="radio" name="sex" value="女性">女
-                    <input type="radio" name="sex" value="性別不明">不明
-                </p>
-                <p><input type="text" name="from"></p>
-                <p>
-                    <input type="text" name="tel1" style="width:50px;">
-                    -<input type="text" name="tel2" style="width:50px;">
-                    -<input type="text" name="tel3" style="width:50px;">
-                </p>
-                <p>
-                    <input type="text" name="mail">
-                    @<input type="text" name="mail2">
-                </p>
-                <p>
-                    <input type="checkbox" name="knew" value="ニュース">ニュース
-                    <input type="checkbox" name="knew" value="学校">学校
-                </p>
-                <p>
-                    <select name="question">
-                        <option value="0" selected>質問のカテゴリを選択してください</option>
-                        <option value="1">質問１</option>
-                    </select>
-                </p>
-            </div>
-            <div id="down">
-                <p>
-                    <textarea cols="100" rows="15" name="comments">質問内容を入力してください</textarea>
-                </p>
-                <!--
-                ↓<button type="submit"></button>を使うとクールなボタンが作れる
-                -->
-                <p style="text-align:center;"><input type="submit" name"submit" value="送信" style="width:100px;height:50px;font-size:200%;"></p>
-            </div>
-        </form>
+                    <!--
+                    テキストボックスとかとあわせてテーブル化したい
+                    その際、tableではなくdiv要素で囲ったものをcssであとから整形してあげるとよい
+                    display:table,table-row,table-cellなど
+                    -->
+                    <div id="cover">
+                        <div id="line">
+                            <div id="left">
+                                <label for="familyname">姓</label>
+                            </div>
+                            <div id="right">
+                                <input type="text" name="familyname" id="familyname">
+                            </div>
+                        </div>
+                        <div id="line">
+                            <div id="left">
+                                <label for="firstname">名</label>
+                            </div>
+                            <div id="right">
+                                <input type="text" name="firstname" id="firstname">
+                            </div>
+                        </div>
+                        <div id="line">
+                            <div id="left">
+                                性別
+                            </div>
+                            <div id="right">
+                                <label><input type="radio" name="sex" value="0">男性</label>
+                                <label><input type="radio" name="sex" value="1">女性</label>
+                                <label><input type="radio" name="sex" value="2">性別不明</label>
+                            </div>
+                        </div>
+                        <div id="line">
+                            <div id="left">
+                                <label for="from">住所</label>
+                            </div>
+                            <div id="right">
+                                <input type="text" name="from" id="from">
+                            </div>
+                        </div>
+                        <div id="line">
+                            <div id="left">
+                                <label for="tel1">電話番号</label>
+                            </div>
+                            <div id="right">
+                                <input type="text" name="tel1" style="width:50px;" id="tel1">
+                                -<input type="text" name="tel2" style="width:50px;">
+                                -<input type="text" name="tel3" style="width:50px;">
+                            </div>
+                        </div>
+                        <div id="line">
+                            <div id="left">
+                                <label for="mail">メールアドレス</label>
+                            </div>
+                            <div id="right">
+                                <input type="text" name="mail" id="mail">
+                                @<input type="text" name="mail2">
+                            </div>
+                        </div>
+                        <div id="line">
+                            <div id="left">
+                                当社をどこで知りましたか？
+                            </div>
+                            <div id="right">
+                                <div id="right_stage">
+                                    <div id="right_stage_top">
+                                        <label><input type="checkbox" name="knew[]" value="0">ニュース</label>
+                                        <label><input type="checkbox" name="knew[]" value="1">学校</label>
+                                        <label><input type="checkbox" name="knew[]" value="2">駅の広告</label>
+                                        <label><input type="checkbox" name="knew[]" value="3">ＣＭ</label>
+                                    </div>
+                                    <div id="right_stage_bottom">
+                                        <label><input type="checkbox" name="knew[]" value="998">その他</label>
+                                        <label><input type="checkbox" name="knew[]" value="999">知らない、覚えていない</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <h2>ご質問</h2>
+                    <div id="bottom">
+                        <div id="category">
+                            <select name="question"　style="word-wrap:normal;">
+                                <option value="0" selected>質問のカテゴリを選択してください</option>
+                                <option value="1">製品について</option>
+                                <option value="2">当社について</option>
+                                <option value="3">採用について</option>
+                                <option value="4">その他</option>
+                            </select>
+                        </div>
+                        <div id="textarea">
+                            <textarea name="comments" id="textarea_area">質問内容を入力してください</textarea>
+                        </div>
+                        <!--
+                        ↓<button type="submit"></button>を使うとクールなボタンが作れる
+                        -->
+                        <div id="submit_reset">
+                            <div id="submit">
+                                <button type="submit" name"submit" id="button_submit">入力内容を確認する</button>
+                            </div>
+                            <div id="reset">
+                                <button type="reset" id="button_reset">最初から書き直す</button>
+                            </div>
+                        </div>
+                    </div>
+            </form>
 </body>
 </html>
