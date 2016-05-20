@@ -24,6 +24,7 @@
         p{
             border: solid 5px #0000CD;
         }
+        /*使わないのでコメントアウト
         #left{
             float: left;
             border: solid 5px #FFD700;
@@ -32,6 +33,7 @@
             float: right;
             border: solid 5px #F0E68C;
         }
+        */
     </style>
 </head>
 <body>
@@ -76,12 +78,13 @@
                     <input type="checkbox" name="knew[]" value="2">駅の広告
                     <input type="checkbox" name="knew[]" value="3">ＣＭ
                     <input type="checkbox" name="knew[]" value="4">その他
+                    <input type="checkbox" name="knew[]" value="5">知らない、覚えていない
                 </p>
                 <p>
                     <!--
                     キーは全部数字で
                     -->
-                    <select name="question">
+                    <select name="question"　style="word-wrap:normal;">
                         <option value="0" selected>質問のカテゴリを選択してください</option>
                         <option value="1">製品について</option>
                         <option value="2">当社について</option>
