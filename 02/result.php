@@ -101,4 +101,7 @@
         <a href="./contact.php">項目をリセットして戻る</a>
     </p>
 </body>
+<?php
+var_dump($_POST);
+?>
 </html>
