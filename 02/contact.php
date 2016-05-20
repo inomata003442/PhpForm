@@ -27,11 +27,21 @@
         #cover{
             border: solid 3px #008000;
         }
+        #line{
+            display: table;
+            width: 100%;
+            border: solid 3px #C0C0C0;
+        }
         #left{
+            display: table-cell;
+            width: 35%;
             /*float: left;*/
+
             border: solid 3px #FFD700;
         }
         #right{
+            display: table-cell;
+            width: 65%;
             /*float: right;*/
             border: solid 3px #F0E68C;
         }
