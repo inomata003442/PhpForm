@@ -72,7 +72,7 @@
     </p>
     <p>当社をどこで知りましたか？
         <?php
-        $knew_array = array('ニュース', '学校', '駅の広告', 'ＣＭ', 'その他', '知らない、覚えていない');
+        $knew_array = array('ニュース', '学校', '駅の広告', 'ＣＭ', "998" => 'その他', "999" => '知らない、覚えていない');
         if(isset($_POST["knew"])){
             foreach($_POST["knew"] as $knew_key){
                 $result_knew[] = $knew_array[$knew_key];
