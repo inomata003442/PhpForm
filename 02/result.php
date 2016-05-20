@@ -12,7 +12,6 @@
     var_dump($_POST);
     ?>
 
-
     <p>姓名
         <?php
         if(isset($_POST["familyname"]) && $_POST["familyname"]!=''

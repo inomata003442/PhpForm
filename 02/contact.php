@@ -27,37 +27,79 @@
         #cover{
         /*    border: solid 3px #008000;    */
         }
-        #line{
-            display: table;
-            width: 100%;
-        /*    border: solid 3px #C0C0C0;  */
-        }
-        #left{
-            display: table-cell;
-            width: 35%;
-        /*    border: solid 3px #FFD700;    */
-        }
-        #right{
-            display: table-cell;
-            width: 65%;
-        /*    border: solid 3px #F0E68C;    */
-        }
-        #right_stage{
-            display: table;
-        /*    border: solid 3px #48D1CC;    */
-        }
-        #right_stage_top{
-            display: table-row;
-        /*    border: solid 3px #C71585;    */
-        }
-        #right_stage_bottom{
-            display: table-row;
-        /*    border: solid 3px #A52A2A;    */
+            #line{
+                display: table;
+                width: 100%;
+                margin: 30px;
+            /*    border: solid 3px #C0C0C0;  */
+            }
+                #left{
+                    display: table-cell;
+                    width: 35%;
+                /*    border: solid 3px #FFD700;    */
+                }
+                #right{
+                    display: table-cell;
+                    width: 65%;
+                /*    border: solid 3px #F0E68C;    */
+                }
+            #right_stage{
+                display: table;
+            /*    border: solid 3px #48D1CC;    */
+            }
+                #right_stage_top{
+                    display: table-row;
+                /*    border: solid 3px #C71585;    */
+                }
+                #right_stage_bottom{
+                    display: table-row;
+                /*    border: solid 3px #A52A2A;    */
 
-        }
-        #down{
-        /*    border: solid 3px #FF00FF;    */
-        }
+                }
+            #bottom{
+            /*    border: solid 3px #FF00FF;    */
+                margin: 30px;
+            }
+                #category{
+                /*    border: solid 3px #C0C0C0;  */
+                    margin-bottom: 30px;
+                }
+                #textarea{
+                /*    border: solid 3px #A52A2A;    */
+                    margin-top:30px;
+                    margin-bottom: 30px;
+                }
+                    #textarea_area{
+                        width: 700px;
+                        height: 100px;
+                        resize: vertical;
+                    }
+                #submit_reset{
+                    display: table;
+                    text-align:center;
+                /*  border : solid 3px #FF00FF;     */
+                    width :100%;
+                    margin: 30px;
+                }
+                #submit{
+                    display: table-cell;
+                    margin: 30px;
+                    width: 50%;
+                }
+                    #button_submit{
+                        font-size: 200%;
+                        height:50px;
+                        width:300px;
+                    }
+                #reset{
+                    display: table-cell;
+                    width: 50%;
+                }
+                    #button_reset{
+                        font-size: 200%;
+                        height:50px;
+                        width:300px;
+                    }
     </style>
 </head>
 <body>
@@ -144,26 +186,30 @@
                     </div>
                 </div>
             <h2>ご質問</h2>
-                <div id="down">
-                        <p>
-                            <select name="question"　style="word-wrap:normal;">
-                                <option value="0" selected>質問のカテゴリを選択してください</option>
-                                <option value="1">製品について</option>
-                                <option value="2">当社について</option>
-                                <option value="3">採用について</option>
-                                <option value="4">その他</option>
-                            </select>
-                        </p>
-                        <p>
-                            <textarea cols="100" rows="15" name="comments">質問内容を入力してください</textarea>
-                        </p>
-                        <!--
-                        ↓<button type="submit"></button>を使うとクールなボタンが作れる
-                        -->
-                        <p style="text-align:center;">
-                            <input type="submit" name"submit" value="送信" style="width:100px;height:50px;font-size:200%;">
-                            <input type="reset" style="width:120px;height:50px;font-size:200%;">
-                        </p>
+                <div id="bottom">
+                    <div id="category">
+                        <select name="question"　style="word-wrap:normal;">
+                            <option value="0" selected>質問のカテゴリを選択してください</option>
+                            <option value="1">製品について</option>
+                            <option value="2">当社について</option>
+                            <option value="3">採用について</option>
+                            <option value="4">その他</option>
+                        </select>
+                    </div>
+                    <div id="textarea">
+                        <textarea name="comments" id="textarea_area">質問内容を入力してください</textarea>
+                    </div>
+                    <!--
+                    ↓<button type="submit"></button>を使うとクールなボタンが作れる
+                    -->
+                    <div id="submit_reset">
+                        <div id="submit">
+                            <button type="submit" name"submit" id="button_submit">入力内容を確認する</button>
+                        </div>
+                        <div id="reset">
+                            <button type="reset" id="button_reset">最初から書き直す</button>
+                        </div>
+                    </div>
                 </div>
         </form>
 </body>
