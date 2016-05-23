@@ -33,6 +33,10 @@
                         width: 800px;
                     /*    border: solid 3px #DC143C;    */
                     }
+                        h2{
+                            padding-left: 1em;
+                            border-left: solid 5px #008000;
+                        }
                         p{
                         /*    border: solid 3px #0000CD;  */
                         }
@@ -43,6 +47,8 @@
                                 display: table;
                                 width: 100%;
                                 margin: 30px;
+                                padding-bottom: 15px;
+                                border-bottom: solid 1px #C0C0C0;
                             /*    border: solid 3px #C0C0C0;  */
                             }
                                 #left{
@@ -68,6 +74,11 @@
                                 /*    border: solid 3px #A52A2A;    */
 
                                 }
+                            #line_bottom{
+                                display: table;
+                                width: 100%;
+                                margin: 30px;
+                            }
                             #bottom{
                             /*    border: solid 3px #FF00FF;    */
                                 margin: 30px;
@@ -234,7 +245,7 @@
                         </div>
                     </div>
                 <h2>ご質問</h2>
-                    <div id="line">
+                    <div id="line_bottom">
                         <div id="left">
                             質問のカテゴリ
                         </div>
