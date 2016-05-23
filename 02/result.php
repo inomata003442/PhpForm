@@ -262,7 +262,8 @@
                     <div id="bottom">
                         <div id="textarea">
                             <?php
-                            echo $_POST["comments"];
+                            $comments_result = nl2br($_POST["comments"]);//改行を読み込む
+                            echo $comments_result;
                             ?>
                         </div>
                         <div id="pageback">

@@ -14,9 +14,10 @@
                 border-bottom: solid 1px #008000;
                  /*↓横（右）（ーを入れると左）　縦（下）（ーを入れると上）　ぼかしを入れる量 広がり 色*/
                 box-shadow: 0px 10px 5px -5px #008000;
-                width: 800px;
+                width: 850px;
                 height: 50px;
                 margin: 100px auto;
+                margin-bottom:50px;/*後に書いた内容で上書きするというCSSの特性を利用し、margin下100pxを50pxで上書き*/
             }
                 h1{
                     border-left: solid 5px #008000;
@@ -35,6 +36,7 @@
                     /*    border: solid 3px #DC143C;    */
                     }
                         h2{
+                            width:800px;
                             padding-left: 1em;
                             padding-bottom: 5px;
                             border-left: solid 5px #008000;
@@ -45,6 +47,13 @@
                         }
                         #cover{
                         /*    border: solid 3px #008000;    */
+                        }
+                        input[type="text"]{
+                            outline:0;
+                            height:30px;
+                            border-width:thin;
+                            border-radius:5px; /*角丸指定*/
+                            border-color:#C0C0C0;
                         }
                             #line{
                                 display: table;
@@ -93,7 +102,11 @@
                                     #textarea_area{
                                         width: 800px;
                                         height: 100px;
+                                        outline:0;
                                         resize: vertical;
+                                        border-width:thin;
+                                        border-radius:5px; /*角丸指定*/
+                                        border-color:#C0C0C0;
                                     }
                                 #submit_reset{
                                     display: table;
@@ -111,13 +124,19 @@
                                             font-size: 125%;
                                             height:50px;
                                             width:300px;
+                                            /*↓borderのすぐ外の空間（outline）を消すことで
+                                            フォーカスした時の青い枠線を消します*/
+                                            outline:0;
                                             border:none;/*初期設定の灰色ボーダーを消す*/
                                             border-radius:5px; /*角丸指定*/
                                             color:#fff; /*文字色を白に*/
                                             /*background-color:#008000; /*ボタンの色*/
                                             box-shadow:#008000; /*ぼかしの指定*/
-                                            /*ボタンをグラデーションさせる (webkit) left top,left bottom =上fromから下toに*/
-                                            background: -webkit-gradient(linear, left top, left bottom, from(#00cc00), to(#008000));
+                                            /*ボタンをグラデーションさせる (webkit)
+                                            left top,left bottom =上fromから下toに*/
+                                            background: -webkit-gradient(linear,
+                                                        left top, left bottom,
+                                                        from(#00cc00), to(#008000));
                                         }
                                     #reset{
                                         width: 50%;
@@ -127,13 +146,17 @@
                                             font-size: 125%;
                                             height:50px;
                                             width:300px;
+                                            outline:0;
                                             border:none;/*初期設定の灰色ボーダーを消す*/
                                             border-radius:5px; /*角丸指定*/
                                             color:#fff; /*文字色を白に*/
                                             /*background-color:#008000; /*ボタンの色*/
                                             box-shadow:#008000; /*ぼかしの指定*/
-                                            /*ボタンをグラデーションさせる (webkit) left top,left bottom =上fromから下toに*/
-                                            background: -webkit-gradient(linear, left top, left bottom, from(#00cc00), to(#008000));
+                                            /*ボタンをグラデーションさせる (webkit)
+                                            left top,left bottom =上fromから下toに*/
+                                            background: -webkit-gradient(linear,
+                                                        left top, left bottom,
+                                                        from(#00cc00), to(#008000));
                                         }
     </style>
 </head>
