@@ -12,10 +12,12 @@
         }
             #h1border{
                 border-bottom: solid 1px #008000;
-                box-shadow: 0px 1px 5px; /*横　縦　ぼかし*/
-                width: 800px;
+                 /*↓横（右）（ーを入れると左）　縦（下）（ーを入れると上）　ぼかしを入れる量 広がり 色*/
+                box-shadow: 0px 10px 5px -5px #008000;
+                width: 850px;
                 height: 50px;
                 margin: 100px auto;
+                margin-bottom:50px;/*後に書いた内容で上書きするというCSSの特性を利用し、margin下100pxを50pxで上書き*/
             }
                 h1{
                     border-left: solid 5px #008000;
@@ -33,16 +35,33 @@
                         width: 800px;
                     /*    border: solid 3px #DC143C;    */
                     }
+                        h2{
+                            width:800px;
+                            padding-left: 1em;
+                            padding-bottom: 5px;
+                            border-left: solid 5px #008000;
+                            border-bottom: solid 1px #008000;
+                        }
                         p{
                         /*    border: solid 3px #0000CD;  */
                         }
                         #cover{
                         /*    border: solid 3px #008000;    */
                         }
+                        input[type="text"]{
+                            outline:0;
+                            height:30px;
+                            border-width:thin;
+                            border-radius:5px; /*角丸指定*/
+                            border-color:#C0C0C0;
+                            padding-left:10px;
+                        }
                             #line{
                                 display: table;
                                 width: 100%;
                                 margin: 30px;
+                                padding-bottom: 15px;
+                                border-bottom: solid 1px #C0C0C0;
                             /*    border: solid 3px #C0C0C0;  */
                             }
                                 #left{
@@ -50,6 +69,10 @@
                                     width: 35%;
                                 /*    border: solid 3px #FFD700;    */
                                 }
+                                    #required{
+                                        color:#fff; /*文字色を白に*/
+                                        background-color:#FF4500;/*背景を赤に*/
+                                    }
                                 #right{
                                     display: table-cell;
                                     width: 65%;
@@ -82,9 +105,13 @@
                                     margin-bottom: 30px;
                                 }
                                     #textarea_area{
-                                        width: 700px;
+                                        width: 800px;
                                         height: 100px;
+                                        outline:0;
                                         resize: vertical;
+                                        border-width:thin;
+                                        border-radius:5px; /*角丸指定*/
+                                        border-color:#C0C0C0;
                                     }
                                 #submit_reset{
                                     display: table;
@@ -99,18 +126,42 @@
                                         width: 50%;
                                     }
                                         #button_submit{
-                                            font-size: 200%;
+                                            font-size: 125%;
                                             height:50px;
                                             width:300px;
+                                            /*↓borderのすぐ外の空間（outline）を消すことで
+                                            フォーカスした時の青い枠線を消します*/
+                                            outline:0;
+                                            border:none;/*初期設定の灰色ボーダーを消す*/
+                                            border-radius:5px; /*角丸指定*/
+                                            color:#fff; /*文字色を白に*/
+                                            /*background-color:#008000; /*ボタンの色*/
+                                            box-shadow:#008000; /*ぼかしの指定*/
+                                            /*ボタンをグラデーションさせる (webkit)
+                                            left top,left bottom =上fromから下toに*/
+                                            background: -webkit-gradient(linear,
+                                                        left top, left bottom,
+                                                        from(#00cc00), to(#008000));
                                         }
                                     #reset{
-                                        display: table-cell;
                                         width: 50%;
+                                        display: table-cell;
                                     }
                                         #button_reset{
-                                            font-size: 200%;
+                                            font-size: 125%;
                                             height:50px;
                                             width:300px;
+                                            outline:0;
+                                            border:none;/*初期設定の灰色ボーダーを消す*/
+                                            border-radius:5px; /*角丸指定*/
+                                            color:#fff; /*文字色を白に*/
+                                            /*background-color:#008000; /*ボタンの色*/
+                                            box-shadow:#008000; /*ぼかしの指定*/
+                                            /*ボタンをグラデーションさせる (webkit)
+                                            left top,left bottom =上fromから下toに*/
+                                            background: -webkit-gradient(linear,
+                                                        left top, left bottom,
+                                                        from(#00cc00), to(#008000));
                                         }
     </style>
 </head>
@@ -130,10 +181,10 @@
                     <div id="cover">
                         <div id="line">
                             <div id="left">
-                                <label for="familyname">姓</label>
+                                <label for="familyname">姓</label><!--<div id="required">必須</div>-->
                             </div>
                             <div id="right">
-                                <input type="text" name="familyname" id="familyname">
+                                <input type="text" name="familyname" id="familyname" placeholder="例：猪股">
                             </div>
                         </div>
                         <div id="line">
@@ -141,7 +192,7 @@
                                 <label for="firstname">名</label>
                             </div>
                             <div id="right">
-                                <input type="text" name="firstname" id="firstname">
+                                <input type="text" name="firstname" id="firstname" placeholder="例：秋良">
                             </div>
                         </div>
                         <div id="line">
@@ -159,7 +210,7 @@
                                 <label for="from">住所</label>
                             </div>
                             <div id="right">
-                                <input type="text" name="from" id="from">
+                                <input type="text" name="from" id="from" placeholder="例：千葉県">
                             </div>
                         </div>
                         <div id="line">
@@ -167,9 +218,9 @@
                                 <label for="tel1">電話番号</label>
                             </div>
                             <div id="right">
-                                <input type="text" name="tel1" style="width:50px;" id="tel1">
-                                -<input type="text" name="tel2" style="width:50px;">
-                                -<input type="text" name="tel3" style="width:50px;">
+                                <input type="text" name="tel1" style="width:50px;" id="tel1" placeholder="例：080">
+                                -<input type="text" name="tel2" style="width:50px;" placeholder="0808">
+                                -<input type="text" name="tel3" style="width:50px;" placeholder="8080">
                             </div>
                         </div>
                         <div id="line">
@@ -177,8 +228,8 @@
                                 <label for="mail">メールアドレス</label>
                             </div>
                             <div id="right">
-                                <input type="text" name="mail" id="mail">
-                                @<input type="text" name="mail2">
+                                <input type="text" name="mail" id="mail" placeholder="例：abcdefg123">
+                                @<input type="text" name="mail2" placeholder="gmail.com">
                             </div>
                         </div>
                         <div id="line">
@@ -213,7 +264,7 @@
                             </select>
                         </div>
                         <div id="textarea">
-                            <textarea name="comments" id="textarea_area">質問内容を入力してください</textarea>
+                            <textarea name="comments" id="textarea_area" placeholder="質問内容を入力してください"></textarea>
                         </div>
                         <!--
                         ↓<button type="submit"></button>を使うとクールなボタンが作れる
