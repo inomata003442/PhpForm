@@ -12,10 +12,12 @@
         }
             #h1border{
                 border-bottom: solid 1px #008000;
-                box-shadow: 0px 1px 5px; /*横　縦　ぼかし*/
-                width: 800px;
+                 /*↓横（右）（ーを入れると左）　縦（下）（ーを入れると上）　ぼかしを入れる量 広がり 色*/
+                box-shadow: 0px 10px 5px -5px #008000;
+                width: 850px;
                 height: 50px;
                 margin: 100px auto;
+                margin-bottom:50px;/*後に書いた内容で上書きするというCSSの特性を利用し、margin下100pxを50pxで上書き*/
             }
                 h1{
                     border-left: solid 5px #008000;
@@ -34,8 +36,11 @@
                     /*    border: solid 3px #DC143C;    */
                     }
                         h2{
+                            width:800px;
                             padding-left: 1em;
+                            padding-bottom: 5px;
                             border-left: solid 5px #008000;
+                            border-bottom: solid 1px #008000;
                         }
                         p{
                         /*    border: solid 3px #0000CD;  */
@@ -78,6 +83,7 @@
                                 display: table;
                                 width: 100%;
                                 margin: 30px;
+                                border-bottom: solid 1px #C0C0C0;
                             }
                             #bottom{
                             /*    border: solid 3px #FF00FF;    */
@@ -187,7 +193,7 @@
                                 if(isset($_POST["from"]) && $_POST["from"]!=''){
                                     echo $_POST["from"];
                                 }else{
-                                    echo '記入してください';
+                                    echo '記入しない';
                                 }
                                 ?>
                             </div>
@@ -202,7 +208,7 @@
                                 if($_POST["tel1"]!=='' && $_POST["tel2"]!=='' && $_POST["tel3"]!==''){
                                     echo $_POST["tel1"]. '-'. $_POST["tel2"]. '-'. $_POST["tel3"];
                                 }elseif($_POST["tel1"]==='' && $_POST["tel2"]==='' && $_POST["tel3"]===''){
-                                    echo '記入してください';
+                                    echo '記入しない';
                                 }else{
                                     echo '不備があります';
                                 }
@@ -215,11 +221,13 @@
                             </div>
                             <div id="right">
                                 <?php
-                                if( (isset($_POST["mail"]) && $_POST["mail"]!='' )
-                                && ( isset($_POST["mail2"]) && $_POST["mail2"]!='') ){
+                                if( (isset($_POST["mail"]) && $_POST["mail"]!=='' )
+                                && ( isset($_POST["mail2"]) && $_POST["mail2"]!=='') ){
                                     echo $_POST["mail"]. "@". $_POST["mail2"];
+                                }elseif($_POST["mail"]==='' && $_POST["mail2"]===''){
+                                    echo '記入しない';
                                 }else{
-                                    echo '記入してください';
+                                    echo '不備があります';
                                 }
                                 ?>
                             </div>
@@ -237,7 +245,7 @@
                                     }
                                     echo implode(" ", $result_knew);
                                 }else{
-                                    $_POST["knew"][] = 5;//自動選択の体を取っているので一応格納します
+                                    $_POST["knew"][] = 999;//自動選択の体を取っているので一応格納します
                                     echo "【自動選択】知らない、覚えていない";
                                 }
                                 ?>

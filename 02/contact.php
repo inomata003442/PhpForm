@@ -54,6 +54,7 @@
                             border-width:thin;
                             border-radius:5px; /*角丸指定*/
                             border-color:#C0C0C0;
+                            padding-left:10px;
                         }
                             #line{
                                 display: table;
@@ -68,6 +69,10 @@
                                     width: 35%;
                                 /*    border: solid 3px #FFD700;    */
                                 }
+                                    #required{
+                                        color:#fff; /*文字色を白に*/
+                                        background-color:#FF4500;/*背景を赤に*/
+                                    }
                                 #right{
                                     display: table-cell;
                                     width: 65%;
@@ -176,10 +181,10 @@
                     <div id="cover">
                         <div id="line">
                             <div id="left">
-                                <label for="familyname">姓</label>
+                                <label for="familyname">姓</label><!--<div id="required">必須</div>-->
                             </div>
                             <div id="right">
-                                <input type="text" name="familyname" id="familyname">
+                                <input type="text" name="familyname" id="familyname" placeholder="例：猪股">
                             </div>
                         </div>
                         <div id="line">
@@ -187,7 +192,7 @@
                                 <label for="firstname">名</label>
                             </div>
                             <div id="right">
-                                <input type="text" name="firstname" id="firstname">
+                                <input type="text" name="firstname" id="firstname" placeholder="例：秋良">
                             </div>
                         </div>
                         <div id="line">
@@ -205,7 +210,7 @@
                                 <label for="from">住所</label>
                             </div>
                             <div id="right">
-                                <input type="text" name="from" id="from">
+                                <input type="text" name="from" id="from" placeholder="例：千葉県">
                             </div>
                         </div>
                         <div id="line">
@@ -213,9 +218,9 @@
                                 <label for="tel1">電話番号</label>
                             </div>
                             <div id="right">
-                                <input type="text" name="tel1" style="width:50px;" id="tel1">
-                                -<input type="text" name="tel2" style="width:50px;">
-                                -<input type="text" name="tel3" style="width:50px;">
+                                <input type="text" name="tel1" style="width:50px;" id="tel1" placeholder="例：080">
+                                -<input type="text" name="tel2" style="width:50px;" placeholder="0808">
+                                -<input type="text" name="tel3" style="width:50px;" placeholder="8080">
                             </div>
                         </div>
                         <div id="line">
@@ -223,8 +228,8 @@
                                 <label for="mail">メールアドレス</label>
                             </div>
                             <div id="right">
-                                <input type="text" name="mail" id="mail">
-                                @<input type="text" name="mail2">
+                                <input type="text" name="mail" id="mail" placeholder="例：abcdefg123">
+                                @<input type="text" name="mail2" placeholder="gmail.com">
                             </div>
                         </div>
                         <div id="line">
@@ -259,7 +264,7 @@
                             </select>
                         </div>
                         <div id="textarea">
-                            <textarea name="comments" id="textarea_area">質問内容を入力してください</textarea>
+                            <textarea name="comments" id="textarea_area" placeholder="質問内容を入力してください"></textarea>
                         </div>
                         <!--
                         ↓<button type="submit"></button>を使うとクールなボタンが作れる
