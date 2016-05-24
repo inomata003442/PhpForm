@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja"><!--このドキュメントは日本語である-->
 <head>
     <meta charset="UTF-8">
     <title>お問い合わせ</title>
@@ -14,7 +14,7 @@
                 border-bottom: solid 1px #008000;
                  /*↓横（右）（ーを入れると左）　縦（下）（ーを入れると上）　ぼかしを入れる量 広がり 色*/
                 box-shadow: 0px 10px 5px -5px #008000;
-                width: 850px;
+                width: 870px;/*formのボーダーより長くなるように後から決めた強引な値　根拠は無い*/
                 height: 50px;
                 margin: 100px auto;
                 margin-bottom:50px;/*後に書いた内容で上書きするというCSSの特性を利用し、margin下100pxを50pxで上書き*/
@@ -48,7 +48,7 @@
                         #cover{
                         /*    border: solid 3px #008000;    */
                         }
-                        input[type="text"]{
+                        input[type="text"]{/*テキストボックスのガワの指定*/
                             outline:0;
                             height:30px;
                             border-width:thin;
@@ -69,10 +69,28 @@
                                     width: 35%;
                                 /*    border: solid 3px #FFD700;    */
                                 }
-                                    #required{
-                                        color:#fff; /*文字色を白に*/
-                                        background-color:#FF4500;/*背景を赤に*/
+                                    #left_stage{
+                                        display:table;
+                                        width:100%;
                                     }
+                                        #left_left{
+                                            display:table-cell;
+                                            width:30%;
+                                        }
+                                        #required{
+                                            display:table-cell;
+                                            width:70%;
+                                            }
+                                            #required_font{
+                                                display:table-cell;/*vertical-alignを有効にするためのテーブルセル化*/
+                                                color:#fff; /*文字色を白に*/
+                                                width:40px;
+                                                height:20px;
+                                                text-align:center;
+                                                background-color:#FF0000;/*背景を赤に*/
+                                                border-radius:5px;/*角丸指定*/
+                                                vertical-align: middle;
+                                            }
                                 #right{
                                     display: table-cell;
                                     width: 65%;
@@ -181,7 +199,16 @@
                     <div id="cover">
                         <div id="line">
                             <div id="left">
-                                <label for="familyname">姓</label><!--<div id="required">必須</div>-->
+                                <div id="left_stage">
+                                    <div id="left_left">
+                                        <label for="familyname">姓</label>
+                                    </div>
+                                    <div id="required">
+                                        <div id="required_font">
+                                            必須
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div id="right">
                                 <input type="text" name="familyname" id="familyname" placeholder="例：猪股">
@@ -189,7 +216,16 @@
                         </div>
                         <div id="line">
                             <div id="left">
-                                <label for="firstname">名</label>
+                                <div id="left_stage">
+                                    <div id="left_left">
+                                        <label for="firstname">名</label>
+                                    </div>
+                                    <div id="required">
+                                        <div id="required_font">
+                                            必須
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div id="right">
                                 <input type="text" name="firstname" id="firstname" placeholder="例：秋良">
@@ -197,7 +233,16 @@
                         </div>
                         <div id="line">
                             <div id="left">
-                                性別
+                                <div id="left_stage">
+                                    <div id="left_left">
+                                        性別
+                                    </div>
+                                    <div id="required">
+                                        <div id="required_font">
+                                            必須
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div id="right">
                                 <label><input type="radio" name="sex" value="0">男性</label>
