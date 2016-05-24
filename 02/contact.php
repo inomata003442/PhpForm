@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja"><!--このドキュメントは日本語である-->
 <head>
     <meta charset="UTF-8">
     <title>お問い合わせ</title>
@@ -14,7 +14,7 @@
                 border-bottom: solid 1px #008000;
                  /*↓横（右）（ーを入れると左）　縦（下）（ーを入れると上）　ぼかしを入れる量 広がり 色*/
                 box-shadow: 0px 10px 5px -5px #008000;
-                width: 850px;
+                width: 870px;/*formのボーダーより長くなるように後から決めた強引な値　根拠は無い*/
                 height: 50px;
                 margin: 100px auto;
                 margin-bottom:50px;/*後に書いた内容で上書きするというCSSの特性を利用し、margin下100pxを50pxで上書き*/
@@ -48,7 +48,7 @@
                         #cover{
                         /*    border: solid 3px #008000;    */
                         }
-                        input[type="text"]{
+                        input[type="text"]{/*テキストボックスのガワの指定*/
                             outline:0;
                             height:30px;
                             border-width:thin;
