@@ -69,10 +69,28 @@
                                     width: 35%;
                                 /*    border: solid 3px #FFD700;    */
                                 }
-                                    #required{
-                                        color:#fff; /*文字色を白に*/
-                                        background-color:#FF4500;/*背景を赤に*/
+                                    #left_stage{
+                                        display:table;
+                                        width:100%;
                                     }
+                                        #left_left{
+                                            display:table-cell;
+                                            width:30%;
+                                        }
+                                        #required{
+                                            display:table-cell;
+                                            width:70%;
+                                            }
+                                            #required_font{
+                                                display:table-cell;/*vertical-alignを有効にするためのテーブルセル化*/
+                                                color:#fff; /*文字色を白に*/
+                                                width:40px;
+                                                height:20px;
+                                                text-align:center;
+                                                background-color:#FF0000;/*背景を赤に*/
+                                                border-radius:5px;/*角丸指定*/
+                                                vertical-align: middle;
+                                            }
                                 #right{
                                     display: table-cell;
                                     width: 65%;
@@ -181,7 +199,16 @@
                     <div id="cover">
                         <div id="line">
                             <div id="left">
-                                <label for="familyname">姓</label><!--<div id="required">必須</div>-->
+                                <div id="left_stage">
+                                    <div id="left_left">
+                                        <label for="familyname">姓</label>
+                                    </div>
+                                    <div id="required">
+                                        <div id="required_font">
+                                            必須
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div id="right">
                                 <input type="text" name="familyname" id="familyname" placeholder="例：猪股">
@@ -189,7 +216,16 @@
                         </div>
                         <div id="line">
                             <div id="left">
-                                <label for="firstname">名</label>
+                                <div id="left_stage">
+                                    <div id="left_left">
+                                        <label for="firstname">名</label>
+                                    </div>
+                                    <div id="required">
+                                        <div id="required_font">
+                                            必須
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div id="right">
                                 <input type="text" name="firstname" id="firstname" placeholder="例：秋良">
@@ -197,7 +233,16 @@
                         </div>
                         <div id="line">
                             <div id="left">
-                                性別
+                                <div id="left_stage">
+                                    <div id="left_left">
+                                        性別
+                                    </div>
+                                    <div id="required">
+                                        <div id="required_font">
+                                            必須
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div id="right">
                                 <label><input type="radio" name="sex" value="0">男性</label>
