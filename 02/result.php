@@ -240,8 +240,17 @@
                                 <?php
                                 $knew_array = array('ニュース', '学校', '駅の広告', 'ＣＭ', "998" => 'その他', "999" => '知らない、覚えていない');
                                 if(isset($_POST["knew"])){
-                                    foreach($_POST["knew"] as $knew_key){
-                                        $result_knew[] = $knew_array[$knew_key];
+                                    $array_escape = array_pop($_POST["knew"]);//この先のif文で使うarray_popは使用した配列をリセットする効果持ちのため、予備格納する
+                                    $_POST["knew"][] = $array_escape;
+                                    if(array_pop($_POST["knew"])==999){
+                                        unset($_POST["knew"]);
+                                        $_POST["knew"][] = 999;//「知らない、覚えていない」ので他は消して再格納します。
+                                        $result_knew[] = $knew_array[999];
+                                    }else{
+                                            $_POST["knew"][] = $array_escape;
+                                            foreach($_POST["knew"] as $knew_key){
+                                            $result_knew[] = $knew_array[$knew_key];
+                                        }
                                     }
                                     echo implode(" ", $result_knew);
                                 }else{
@@ -291,18 +300,20 @@ $fp = fopen('C:\Users\Owner\Documents\PhpForm\02\contact_log.txt', "a+");
 $numArray = file('C:\Users\Owner\Documents\PhpForm\02\contact_log.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $logNum = array_pop($numArray);//配列の最後を返す
 $logNum = $logNum+1;
+error_reporting(E_ALL & ~E_NOTICE);//存在しない配列の参照をするとNOTICEエラーが表示されるので、非表示
 $logStr =   "\n"."\n".
             $logNum."\n".
-            '姓名'.$_POST["familyname"]." ".$_POST["firstname"]."\n".
-            '性別'.$sex_array[$_POST["sex"]]."\n".
-            '住所'.$_POST["from"]."\n".
-            '電話番号'.$_POST["tel1"]."-".$_POST["tel2"]."-".$_POST["tel3"]."\n".
-            'メールアドレス'.$_POST["mail"]."@".$_POST["mail2"]."\n".
-            '当社をどこで知りましたか？'.implode(" ", $result_knew)."\n".
-            '質問のカテゴリ'.$question_array[$_POST["question"]]."\n".
-            '質問内容'."\n".
+            '姓名　'.$_POST["familyname"]." ".$_POST["firstname"]."\n".
+            '性別　'.$sex_array[$_POST["sex"]]."\n".
+            '住所　'.$_POST["from"]."\n".
+            '電話番号　'.$_POST["tel1"]."-".$_POST["tel2"]."-".$_POST["tel3"]."\n".
+            'メールアドレス　'.$_POST["mail"]."@".$_POST["mail2"]."\n".
+            '当社をどこで知りましたか？　'.implode(" ", $result_knew)."\n".
+            '質問のカテゴリ　'.$question_array[$_POST["question"]]."\n".
+            '質問内容　'."\n".
             $comments_result."\n".
             $logNum;
+error_reporting(E_ALL);//全エラーが表示されるように、エラー設定を元に戻す
 fwrite($fp, $logStr);
 fclose($fp);
 ?>
