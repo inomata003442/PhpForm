@@ -240,15 +240,12 @@
                                 <?php
                                 $knew_array = array('ニュース', '学校', '駅の広告', 'ＣＭ', "998" => 'その他', "999" => '知らない、覚えていない');
                                 if(isset($_POST["knew"])){
-                                    $array_escape = array_pop($_POST["knew"]);//この先のif文で使うarray_popは使用した配列をリセットする効果持ちのため、予備格納する
-                                    $_POST["knew"][] = $array_escape;
-                                    if(array_pop($_POST["knew"])==999){
+                                    if(in_array('999', $_POST["knew"])===TRUE){
                                         unset($_POST["knew"]);
                                         $_POST["knew"][] = 999;//「知らない、覚えていない」ので他は消して再格納します。
                                         $result_knew[] = $knew_array[999];
                                     }else{
-                                            $_POST["knew"][] = $array_escape;
-                                            foreach($_POST["knew"] as $knew_key){
+                                        foreach($_POST["knew"] as $knew_key){
                                             $result_knew[] = $knew_array[$knew_key];
                                         }
                                     }
@@ -294,7 +291,6 @@
 </html>
 <?php
 $fp = fopen('C:\Users\Owner\Documents\PhpForm\02\contact_log.txt', "a+");
-/*$logNum = fgets(fseek($fp, -1, SEEK_END));*/
 //↓（ 改行文字を追加しない | 空行をスキップする　）をやった上で配列に格納
 //↓　$fpでは駄目だったのでフルパスを入れてます
 $numArray = file('C:\Users\Owner\Documents\PhpForm\02\contact_log.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
