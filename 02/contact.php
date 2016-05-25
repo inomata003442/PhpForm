@@ -1,3 +1,35 @@
+<?php
+//値を保持しているとリセットボタンが利かないので
+if(isset($_POST["reset_flg"])){
+    $_POST = array();
+}
+?>
+<?php
+error_reporting(E_ALL & ~E_NOTICE);//存在しない配列の参照をするとNOTICEエラーが表示されるので、非表示
+$send_flg = false;
+$err_msg = array();//初期化
+if ($_POST["post_flg"]){//確認ボタンを押したらここが始まる
+    if ($_POST["familyname"] == ""){
+        $err_msg[] = "姓は必須です";
+    }
+    if ($_POST["firstname"] == ""){
+        $err_msg[] = "名前は必須です";
+    }
+    if($_POST["sex"] == ""){
+        $err_msg[] = "性別は必須です";
+    }
+    if(count($err_msg) == 0){
+        //エラーがなければresult.phpにPOST送信してページ遷移
+        //↓ステータスコード307 temp~　：　強制一時リダイレクト 通常、locationで遷移すると消えるはずの$_POSTをもっていける
+        //（参考http://ja.stackoverflow.com/questions/13026/phpでのpostデータの送信(送信までURL)）
+        header('HTTP/1.1 307 Temporary Redirect');
+        header( "Location: result.php" ) ;
+    }
+}
+error_reporting(E_ALL);//全エラーが表示されるように、エラー設定を元に戻す
+//var_dump($err_msg);
+//var_dump($_POST);
+?>
 <!DOCTYPE html>
 <html lang="ja"><!--このドキュメントは日本語である-->
 <head>
@@ -30,7 +62,7 @@
                         padding-left: 1em;
                     /*    border : solid 3px #DC143C;   */
                     }
-                    form{
+                    #form1{
                         margin: 0 auto;
                         width: 800px;
                     /*    border: solid 3px #DC143C;    */
@@ -189,7 +221,7 @@
             <div id="h1word">お問い合わせフォーム</div>
         </h1>
     </div>
-            <form action="result.php" method="POST">
+            <form method="POST" id="form1">
                 <h2>お客様に関する情報</h2>
                     <!--
                     テキストボックスとかとあわせてテーブル化したい
@@ -211,7 +243,7 @@
                                 </div>
                             </div>
                             <div id="right">
-                                <input type="text" name="familyname" id="familyname" placeholder="例：猪股">
+                                <input type="text" name="familyname" id="familyname" value="<?php if($_POST["familyname"]!==""){ echo $_POST["familyname"]; } ?>" placeholder="例：猪股">
                             </div>
                         </div>
                         <div id="line">
@@ -300,7 +332,7 @@
                 <h2>ご質問</h2>
                     <div id="bottom">
                         <div id="category">
-                            <select name="question"　style="word-wrap:normal;">
+                            <select name="question"　style="word-wrap:normal;"><!--単語の途中で改行せず枠を広げる-->
                                 <option value="0" selected>質問のカテゴリを選択してください</option>
                                 <option value="1">製品について</option>
                                 <option value="2">当社について</option>
@@ -316,10 +348,10 @@
                         -->
                         <div id="submit_reset">
                             <div id="submit">
-                                <button type="submit" name"submit" id="button_submit">入力内容を確認する</button>
+                                <button type="submit" name="post_flg" value="submit" id="button_submit">入力内容を確認する</button>
                             </div>
                             <div id="reset">
-                                <button type="reset" id="button_reset">最初から書き直す</button>
+                                <button type="submit" name="reset_flg" value="reset" id="button_reset">最初から書き直す</button>
                             </div>
                         </div>
                     </div>

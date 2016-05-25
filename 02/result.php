@@ -131,7 +131,28 @@
                                         }
                                 #pageback{
                                     margin-top:100px;
+                                    text-align:center;
                                 }
+                                    #link_button{
+                                        /*position: relative;*/
+                                        height:50px;
+                                        width:300px;
+                                        /*↓borderのすぐ外の空間（outline）を消すことで
+                                        フォーカスした時の青い枠線を消します*/
+                                        outline:0;
+                                        border:none;/*初期設定の灰色ボーダーを消す*/
+                                        border-radius:5px; /*角丸指定*/
+                                        /*background-color:#008000; /*ボタンの色*/
+                                        box-shadow:#008000; /*ぼかしの指定*/
+                                        /*ボタンをグラデーションさせる (webkit)
+                                        left top,left bottom =上fromから下toに*/
+                                        background: -webkit-gradient(linear,
+                                                    left top, left bottom,
+                                                    from(#00cc00), to(#008000));
+                                        font-size: 125%;
+                                        color:#fff; /*文字色を白に*/
+                                        text-decoration:none;
+                                    }
     </style>
 </head>
 <body>
@@ -282,8 +303,9 @@
                             ?>
                         </div>
                         <div id="pageback">
-
-                            <a href="./contact.php">項目をリセットして戻る</a>
+                            <!--↓onclick・・・クリックしたら""内の命令を起動する(中はjavascript)値が "window.open('リンク先')"なら新しいタブで開く　　
+                                document.locationならリンク先を表示せよ-->
+                            <button type="button" onclick="document.location='./contact.php';" id="link_button">確認を終了して戻る</button>
                         </div>
                     </div>
             </form>
