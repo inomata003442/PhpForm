@@ -305,7 +305,7 @@
                         <div id="pageback">
                             <!--↓onclick・・・クリックしたら""内の命令を起動する(中はjavascript)値が "window.open('リンク先')"なら新しいタブで開く　　
                                 document.locationならリンク先を表示せよ-->
-                            <button type="button" onclick="document.location='./contact.php';" id="link_button">項目をリセットして戻る</button>
+                            <button type="button" onclick="document.location='./contact.php';" id="link_button">確認を終了して戻る</button>
                         </div>
                     </div>
             </form>
