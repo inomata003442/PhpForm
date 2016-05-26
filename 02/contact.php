@@ -5,6 +5,20 @@ if(isset($_POST["reset_flg"])){
 }
 ?>
 <?php
+//サニタイズ 39行目か40行目が悪さするのでこれは擬似リセットやエラーでここに戻ってきた時用
+function sany($a){
+    $_data = array();
+    foreach ($a as $key => $value) {
+        if (is_array($value)) {
+            $_data[$key] = sany($value);
+        }else{
+            $_data[$key] = htmlspecialchars($value, ENT_QUOTES);
+        }
+    }
+    return $_data;
+}
+?>
+<?php
 //必須チェック
 error_reporting(E_ALL & ~E_NOTICE);//存在しない配列の参照をするとNOTICEエラーが表示されるので、非表示
 $err_msg = array();//初期化
@@ -19,21 +33,13 @@ if ($_POST["post_flg"]){//確認ボタンを押したらここが始まる
         $err_msg[] = "性別は必須です";
     }
     if(count($err_msg) == 0){
-/*        //サニタイズ
-        function function_htmlspecialchars($_POST) {
-            if (is_array($_POST)) {
-                return array_map("function_htmlspecialchars", $_POST);
-            } else {
-                return htmlspecialchars($_POST, ENT_QUOTES);
-            }
-        }
-        function_htmlspecialchars($_POST);*/
         //エラーがなければresult.phpにPOST送信してページ遷移
         //↓ステータスコード307 temp~　：　強制一時リダイレクト 通常、locationで遷移すると消えるはずの$_POSTをもっていける
         //（参考http://ja.stackoverflow.com/questions/13026/phpでのpostデータの送信(送信までURL)）
         header('HTTP/1.1 307 Temporary Redirect');
         header( "Location: result.php" ) ;
     }
+$_POST = sany($_POST);
 }
 error_reporting(E_ALL);//全エラーが表示されるように、エラー設定を元に戻す
 //var_dump($err_msg);
@@ -401,7 +407,7 @@ if(isset($_POST["question"])){
                         -->
                         <div id="submit_reset">
                             <div id="submit">
-                                <button type="submit" name="post_flg" value="submit" id="button_submit">入力内容を確認する</button>
+                                <button type="submit" name="post_flg" value="submit" id="button_submit">入力内容を送信する</button>
                             </div>
                             <div id="reset">
                                 <!--擬似リセットボタン-->

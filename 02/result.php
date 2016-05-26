@@ -1,3 +1,20 @@
+<?php
+//サニタイズ
+function sany($a){
+    $_data = array();
+    foreach ($a as $key => $value) {
+        if (is_array($value)) {
+            $_data[$key] = sany($value);
+        }else{
+            $_data[$key] = htmlspecialchars($value, ENT_QUOTES);
+        }
+    }
+    return $_data;
+}
+?>
+<?php
+$_POST = sany($_POST);
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
