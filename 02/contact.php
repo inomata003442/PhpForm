@@ -1,5 +1,5 @@
 <?php
-//値を保持しているとリセットボタンが利かないので
+//擬似リセットボタン
 if(isset($_POST["reset_flg"])){
     $_POST = array();
 }
@@ -243,7 +243,7 @@ error_reporting(E_ALL);//全エラーが表示されるように、エラー設�
                                 </div>
                             </div>
                             <div id="right">
-                                <input type="text" name="familyname" id="familyname" value="<?php if($_POST["familyname"]!==""){ echo $_POST["familyname"]; } ?>" placeholder="例：猪股">
+                                <input type="text" name="familyname" id="familyname" value="<?php if(isset($_POST["familyname"])){echo $_POST["familyname"];} ?>" placeholder="例：猪股">
                             </div>
                         </div>
                         <div id="line">
@@ -260,7 +260,7 @@ error_reporting(E_ALL);//全エラーが表示されるように、エラー設�
                                 </div>
                             </div>
                             <div id="right">
-                                <input type="text" name="firstname" id="firstname" placeholder="例：秋良">
+                                <input type="text" name="firstname" id="firstname" value="<?php if(isset($_POST["firstname"])){echo $_POST["firstname"];} ?>" placeholder="例：秋良">
                             </div>
                         </div>
                         <div id="line">
@@ -287,7 +287,7 @@ error_reporting(E_ALL);//全エラーが表示されるように、エラー設�
                                 <label for="from">住所</label>
                             </div>
                             <div id="right">
-                                <input type="text" name="from" id="from" placeholder="例：千葉県">
+                                <input type="text" name="from" id="from" value="<?php if(isset($_POST["from"])){echo $_POST["from"];} ?>" placeholder="例：千葉県">
                             </div>
                         </div>
                         <div id="line">
@@ -295,9 +295,9 @@ error_reporting(E_ALL);//全エラーが表示されるように、エラー設�
                                 <label for="tel1">電話番号</label>
                             </div>
                             <div id="right">
-                                <input type="text" name="tel1" style="width:50px;" id="tel1" placeholder="例：080">
-                                -<input type="text" name="tel2" style="width:50px;" placeholder="0808">
-                                -<input type="text" name="tel3" style="width:50px;" placeholder="8080">
+                                <input type="text" name="tel1" style="width:50px;" id="tel1" value="<?php if(isset($_POST["tel1"])){echo $_POST["tel1"];} ?>" placeholder="例：080">
+                                -<input type="text" name="tel2" style="width:50px;" value="<?php if(isset($_POST["tel2"])){echo $_POST["tel2"];} ?>" placeholder="0808">
+                                -<input type="text" name="tel3" style="width:50px;" value="<?php if(isset($_POST["tel3"])){echo $_POST["tel3"];} ?>" placeholder="8080">
                             </div>
                         </div>
                         <div id="line">
@@ -305,8 +305,8 @@ error_reporting(E_ALL);//全エラーが表示されるように、エラー設�
                                 <label for="mail">メールアドレス</label>
                             </div>
                             <div id="right">
-                                <input type="text" name="mail" id="mail" placeholder="例：abcdefg123">
-                                @<input type="text" name="mail2" placeholder="gmail.com">
+                                <input type="text" name="mail" id="mail" value="<?php if(isset($_POST["mail"])){echo $_POST["mail"];} ?>" placeholder="例：abcdefg123">
+                                @<input type="text" name="mail2" value="<?php if(isset($_POST["mail2"])){echo $_POST["mail2"];} ?>" placeholder="gmail.com">
                             </div>
                         </div>
                         <div id="line">
@@ -341,7 +341,7 @@ error_reporting(E_ALL);//全エラーが表示されるように、エラー設�
                             </select>
                         </div>
                         <div id="textarea">
-                            <textarea name="comments" id="textarea_area" placeholder="質問内容を入力してください"></textarea>
+                            <textarea name="comments" id="textarea_area" placeholder="質問内容を入力してください"><?php if(isset($_POST["comments"])){echo $_POST["comments"];} ?></textarea>
                         </div>
                         <!--
                         ↓<button type="submit"></button>を使うとクールなボタンが作れる
@@ -351,6 +351,7 @@ error_reporting(E_ALL);//全エラーが表示されるように、エラー設�
                                 <button type="submit" name="post_flg" value="submit" id="button_submit">入力内容を確認する</button>
                             </div>
                             <div id="reset">
+                                <!--擬似リセットボタン-->
                                 <button type="submit" name="reset_flg" value="reset" id="button_reset">最初から書き直す</button>
                             </div>
                         </div>
