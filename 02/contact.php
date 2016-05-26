@@ -1,10 +1,11 @@
 <?php
-//擬似リセットボタン
+//擬似リセットボタンの処理
 if(isset($_POST["reset_flg"])){
-    $_POST = array();
+    $_POST = array();//初期化
 }
 ?>
 <?php
+//必須チェック
 error_reporting(E_ALL & ~E_NOTICE);//存在しない配列の参照をするとNOTICEエラーが表示されるので、非表示
 $send_flg = false;
 $err_msg = array();//初期化
@@ -29,6 +30,29 @@ if ($_POST["post_flg"]){//確認ボタンを押したらここが始まる
 error_reporting(E_ALL);//全エラーが表示されるように、エラー設定を元に戻す
 //var_dump($err_msg);
 //var_dump($_POST);
+?>
+<?php
+//セレクトボックスの保持
+if(isset($_POST["question"])){
+    if($_POST["question"]==="0"){
+        $selected0 = "selected";
+    }
+    if($_POST["question"]==="1"){
+        $selected1 = "selected";
+    }
+    if($_POST["question"]==="2"){
+        $selected2 = "selected";
+    }
+    if($_POST["question"]==="3"){
+        $selected3 = "selected";
+    }
+    if($_POST["question"]==="4"){
+        $selected4 = "selected";
+    }
+}else{
+    //擬似リセットボタンが作動した時用の初期値
+    $selected0 = "selected";
+}
 ?>
 <!DOCTYPE html>
 <html lang="ja"><!--このドキュメントは日本語である-->
@@ -277,9 +301,9 @@ error_reporting(E_ALL);//全エラーが表示されるように、エラー設�
                                 </div>
                             </div>
                             <div id="right">
-                                <label><input type="radio" name="sex" value="0">男性</label>
-                                <label><input type="radio" name="sex" value="1">女性</label>
-                                <label><input type="radio" name="sex" value="2">性別不明</label>
+                                <label><input type="radio" name="sex" value="0" <?php if(isset($_POST["sex"])){if($_POST["sex"]==="0"){echo "checked";}}?>>男性</label>
+                                <label><input type="radio" name="sex" value="1" <?php if(isset($_POST["sex"])){if($_POST["sex"]==="1"){echo "checked";}}?>>女性</label>
+                                <label><input type="radio" name="sex" value="2" <?php if(isset($_POST["sex"])){if($_POST["sex"]==="2"){echo "checked";}}?>>性別不明</label>
                             </div>
                         </div>
                         <div id="line">
@@ -316,14 +340,14 @@ error_reporting(E_ALL);//全エラーが表示されるように、エラー設�
                             <div id="right">
                                 <div id="right_stage">
                                     <div id="right_stage_top">
-                                        <label><input type="checkbox" name="knew[]" value="0">ニュース</label>
-                                        <label><input type="checkbox" name="knew[]" value="1">学校</label>
-                                        <label><input type="checkbox" name="knew[]" value="2">駅の広告</label>
-                                        <label><input type="checkbox" name="knew[]" value="3">ＣＭ</label>
+                                        <label><input type="checkbox" name="knew[0]" value="0" <?php if(isset($_POST["knew"][0])){if($_POST["knew"][0]==="0"){echo "checked";}}?>>ニュース</label>
+                                        <label><input type="checkbox" name="knew[1]" value="1" <?php if(isset($_POST["knew"][1])){if($_POST["knew"][1]==="1"){echo "checked";}}?>>学校</label>
+                                        <label><input type="checkbox" name="knew[2]" value="2" <?php if(isset($_POST["knew"][2])){if($_POST["knew"][2]==="2"){echo "checked";}}?>>駅の広告</label>
+                                        <label><input type="checkbox" name="knew[3]" value="3" <?php if(isset($_POST["knew"][3])){if($_POST["knew"][3]==="3"){echo "checked";}}?>>ＣＭ</label>
                                     </div>
                                     <div id="right_stage_bottom">
-                                        <label><input type="checkbox" name="knew[]" value="998">その他</label>
-                                        <label><input type="checkbox" name="knew[]" value="999">知らない、覚えていない</label>
+                                        <label><input type="checkbox" name="knew[998]" value="998" <?php if(isset($_POST["knew"][998])){if($_POST["knew"][998]==="998"){echo "checked";}}?>>その他</label>
+                                        <label><input type="checkbox" name="knew[999]" value="999" <?php if(isset($_POST["knew"][999])){if($_POST["knew"][999]==="999"){echo "checked";}}?>>知らない、覚えていない</label>
                                     </div>
                                 </div>
                             </div>
@@ -333,11 +357,11 @@ error_reporting(E_ALL);//全エラーが表示されるように、エラー設�
                     <div id="bottom">
                         <div id="category">
                             <select name="question"　style="word-wrap:normal;"><!--単語の途中で改行せず枠を広げる-->
-                                <option value="0" selected>質問のカテゴリを選択してください</option>
-                                <option value="1">製品について</option>
-                                <option value="2">当社について</option>
-                                <option value="3">採用について</option>
-                                <option value="4">その他</option>
+                                <option value="0" <?php if(isset($selected0)){echo $selected0;}?>>質問のカテゴリを選択してください</option>
+                                <option value="1" <?php if(isset($selected1)){echo $selected1;}?>>製品について</option>
+                                <option value="2" <?php if(isset($selected2)){echo $selected2;}?>>当社について</option>
+                                <option value="3" <?php if(isset($selected3)){echo $selected3;}?>>採用について</option>
+                                <option value="4" <?php if(isset($selected4)){echo $selected4;}?>>その他</option>
                             </select>
                         </div>
                         <div id="textarea">
