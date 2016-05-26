@@ -7,7 +7,6 @@ if(isset($_POST["reset_flg"])){
 <?php
 //必須チェック
 error_reporting(E_ALL & ~E_NOTICE);//存在しない配列の参照をするとNOTICEエラーが表示されるので、非表示
-$send_flg = false;
 $err_msg = array();//初期化
 if ($_POST["post_flg"]){//確認ボタンを押したらここが始まる
     if ($_POST["familyname"] == ""){
@@ -20,6 +19,15 @@ if ($_POST["post_flg"]){//確認ボタンを押したらここが始まる
         $err_msg[] = "性別は必須です";
     }
     if(count($err_msg) == 0){
+/*        //サニタイズ
+        function function_htmlspecialchars($_POST) {
+            if (is_array($_POST)) {
+                return array_map("function_htmlspecialchars", $_POST);
+            } else {
+                return htmlspecialchars($_POST, ENT_QUOTES);
+            }
+        }
+        function_htmlspecialchars($_POST);*/
         //エラーがなければresult.phpにPOST送信してページ遷移
         //↓ステータスコード307 temp~　：　強制一時リダイレクト 通常、locationで遷移すると消えるはずの$_POSTをもっていける
         //（参考http://ja.stackoverflow.com/questions/13026/phpでのpostデータの送信(送信までURL)）
@@ -85,6 +93,16 @@ if(isset($_POST["question"])){
                         margin-bottom: 10px;
                         padding-left: 1em;
                     /*    border : solid 3px #DC143C;   */
+                    }
+                    #errStage{
+                        margin: 0 275px;
+                        width: 800px;
+                        background-color:#E7D3D6;
+                        border:3px solid #A55952;
+                        color:#944121;
+                        font-size:12px;
+                        padding:10px;
+                        text-align:left;
                     }
                     #form1{
                         margin: 0 auto;
@@ -152,91 +170,91 @@ if(isset($_POST["question"])){
                                     width: 65%;
                                 /*    border: solid 3px #F0E68C;    */
                                 }
-                            #right_stage{
-                                display: table;
-                            /*    border: solid 3px #48D1CC;    */
-                            }
-                                #right_stage_top{
-                                    display: table-row;
-                                /*    border: solid 3px #C71585;    */
-                                }
-                                #right_stage_bottom{
-                                    display: table-row;
-                                /*    border: solid 3px #A52A2A;    */
-
-                                }
-                            #bottom{
-                            /*    border: solid 3px #FF00FF;    */
-                                margin: 30px;
-                            }
-                                #category{
-                                /*    border: solid 3px #C0C0C0;  */
-                                    margin-bottom: 30px;
-                                }
-                                #textarea{
-                                /*    border: solid 3px #A52A2A;    */
-                                    margin-top:30px;
-                                    margin-bottom: 30px;
-                                }
-                                    #textarea_area{
-                                        width: 800px;
-                                        height: 100px;
-                                        outline:0;
-                                        resize: vertical;
-                                        border-width:thin;
-                                        border-radius:5px; /*角丸指定*/
-                                        border-color:#C0C0C0;
+                                    #right_stage{
+                                        display: table;
+                                    /*    border: solid 3px #48D1CC;    */
                                     }
-                                #submit_reset{
-                                    display: table;
-                                    text-align:center;
-                                /*  border : solid 3px #FF00FF;     */
-                                    width :100%;
+                                        #right_stage_top{
+                                            display: table-row;
+                                        /*    border: solid 3px #C71585;    */
+                                        }
+                                        #right_stage_bottom{
+                                            display: table-row;
+                                        /*    border: solid 3px #A52A2A;    */
+
+                                        }
+                                #bottom{
+                                /*    border: solid 3px #FF00FF;    */
                                     margin: 30px;
                                 }
-                                    #submit{
-                                        display: table-cell;
+                                    #category{
+                                    /*    border: solid 3px #C0C0C0;  */
+                                        margin-bottom: 30px;
+                                    }
+                                    #textarea{
+                                    /*    border: solid 3px #A52A2A;    */
+                                        margin-top:30px;
+                                        margin-bottom: 30px;
+                                    }
+                                        #textarea_area{
+                                            width: 800px;
+                                            height: 100px;
+                                            outline:0;
+                                            resize: vertical;
+                                            border-width:thin;
+                                            border-radius:5px; /*角丸指定*/
+                                            border-color:#C0C0C0;
+                                        }
+                                    #submit_reset{
+                                        display: table;
+                                        text-align:center;
+                                    /*  border : solid 3px #FF00FF;     */
+                                        width :100%;
                                         margin: 30px;
-                                        width: 50%;
                                     }
-                                        #button_submit{
-                                            font-size: 125%;
-                                            height:50px;
-                                            width:300px;
-                                            /*↓borderのすぐ外の空間（outline）を消すことで
-                                            フォーカスした時の青い枠線を消します*/
-                                            outline:0;
-                                            border:none;/*初期設定の灰色ボーダーを消す*/
-                                            border-radius:5px; /*角丸指定*/
-                                            color:#fff; /*文字色を白に*/
-                                            /*background-color:#008000; /*ボタンの色*/
-                                            box-shadow:#008000; /*ぼかしの指定*/
-                                            /*ボタンをグラデーションさせる (webkit)
-                                            left top,left bottom =上fromから下toに*/
-                                            background: -webkit-gradient(linear,
-                                                        left top, left bottom,
-                                                        from(#00cc00), to(#008000));
+                                        #submit{
+                                            display: table-cell;
+                                            margin: 30px;
+                                            width: 50%;
                                         }
-                                    #reset{
-                                        width: 50%;
-                                        display: table-cell;
-                                    }
-                                        #button_reset{
-                                            font-size: 125%;
-                                            height:50px;
-                                            width:300px;
-                                            outline:0;
-                                            border:none;/*初期設定の灰色ボーダーを消す*/
-                                            border-radius:5px; /*角丸指定*/
-                                            color:#fff; /*文字色を白に*/
-                                            /*background-color:#008000; /*ボタンの色*/
-                                            box-shadow:#008000; /*ぼかしの指定*/
-                                            /*ボタンをグラデーションさせる (webkit)
-                                            left top,left bottom =上fromから下toに*/
-                                            background: -webkit-gradient(linear,
-                                                        left top, left bottom,
-                                                        from(#00cc00), to(#008000));
+                                            #button_submit{
+                                                font-size: 125%;
+                                                height:50px;
+                                                width:300px;
+                                                /*↓borderのすぐ外の空間（outline）を消すことで
+                                                フォーカスした時の青い枠線を消します*/
+                                                outline:0;
+                                                border:none;/*初期設定の灰色ボーダーを消す*/
+                                                border-radius:5px; /*角丸指定*/
+                                                color:#fff; /*文字色を白に*/
+                                                /*background-color:#008000; /*ボタンの色*/
+                                                box-shadow:#008000; /*ぼかしの指定*/
+                                                /*ボタンをグラデーションさせる (webkit)
+                                                left top,left bottom =上fromから下toに*/
+                                                background: -webkit-gradient(linear,
+                                                            left top, left bottom,
+                                                            from(#00cc00), to(#008000));
+                                            }
+                                        #reset{
+                                            width: 50%;
+                                            display: table-cell;
                                         }
+                                            #button_reset{
+                                                font-size: 125%;
+                                                height:50px;
+                                                width:300px;
+                                                outline:0;
+                                                border:none;/*初期設定の灰色ボーダーを消す*/
+                                                border-radius:5px; /*角丸指定*/
+                                                color:#fff; /*文字色を白に*/
+                                                /*background-color:#008000; /*ボタンの色*/
+                                                box-shadow:#008000; /*ぼかしの指定*/
+                                                /*ボタンをグラデーションさせる (webkit)
+                                                left top,left bottom =上fromから下toに*/
+                                                background: -webkit-gradient(linear,
+                                                            left top, left bottom,
+                                                            from(#00cc00), to(#008000));
+                                            }
     </style>
 </head>
 <body>
@@ -245,6 +263,17 @@ if(isset($_POST["question"])){
             <div id="h1word">お問い合わせフォーム</div>
         </h1>
     </div>
+            <?php
+            //エラーメッセージがあるときだけ出現させる
+            if(count($err_msg) > 0){?>
+            <div id="errStage">
+            <?php
+                foreach($err_msg as $msg){
+                    echo $msg. "<br>";
+                }
+            }
+            ?>
+            </div>
             <form method="POST" id="form1">
                 <h2>お客様に関する情報</h2>
                     <!--
