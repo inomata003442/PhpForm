@@ -1,3 +1,20 @@
+<?php
+//サニタイズ
+function sany($a){
+    $_data = array();
+    foreach ($a as $key => $value) {
+        if (is_array($value)) {
+            $_data[$key] = sany($value);
+        }else{
+            $_data[$key] = htmlspecialchars($value, ENT_QUOTES);
+        }
+    }
+    return $_data;
+}
+?>
+<?php
+$_POST = sany($_POST);
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -312,10 +329,10 @@
 </body>
 </html>
 <?php
-$fp = fopen('C:\Users\Owner\Documents\PhpForm\02\contact_log.txt', "a+");
+$fp = fopen('.\contact_log.txt', "a+");
 //↓（ 改行文字を追加しない | 空行をスキップする　）をやった上で配列に格納
-//↓　$fpでは駄目だったのでフルパスを入れてます
-$numArray = file('C:\Users\Owner\Documents\PhpForm\02\contact_log.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+//↓　$fpでは駄目だったのでフルパスを入れてます(相対パスでも動きましたので、そうしました)
+$numArray = file('.\contact_log.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 $logNum = array_pop($numArray);//配列の最後を返す
 $logNum = $logNum+1;
 error_reporting(E_ALL & ~E_NOTICE);//存在しない配列の参照をするとNOTICEエラーが表示されるので、非表示
