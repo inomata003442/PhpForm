@@ -5,7 +5,7 @@ if(isset($_POST["reset_flg"])){
 }
 ?>
 <?php
-//サニタイズ 39行目か40行目が悪さするのでこれは擬似リセットやエラーでここに戻ってきた時用
+//サニタイズ(無害化) header("Location : result.php");かheader('HTTP/1.1 307 Temporary Redirect');が悪さするのでこれは擬似リセットやエラーでここに戻ってきた時用
 function sany($a){
     $_data = array();
     foreach ($a as $key => $value) {
@@ -19,18 +19,57 @@ function sany($a){
 }
 ?>
 <?php
-//必須チェック
+//必須チェックとバリデーション(入力制限)
+//$err_msg[]の配列キーが被っているヤツは共通化したい項目　スペースが足りなくて上に表示されるが本来はボックスの右に表示したかった。←その際、キーで呼び出そうと思っていた。
 error_reporting(E_ALL & ~E_NOTICE);//存在しない配列の参照をするとNOTICEエラーが表示されるので、非表示
 $err_msg = array();//初期化
 if ($_POST["post_flg"]){//確認ボタンを押したらここが始まる
     if ($_POST["familyname"] == ""){
-        $err_msg[] = "姓は必須です";
+        $err_msg[0] = "姓は必須です。";
+    }
+    if($_POST["familyname"]!==""){
+        mb_regex_encoding("UTF-8");
+        if(!preg_match("/^[a-zA-Zァ-ヶー一-龠]+$/",$_POST["familyname"])){// /(これより正規表現)^(行始)[0から9]｛が２～４回｝$(行末)(ここまで正規表現)/
+            $err_msg[1] = "姓はひらがなカタカナ漢字、又は半角英字で記入してください。";
+        }
     }
     if ($_POST["firstname"] == ""){
-        $err_msg[] = "名前は必須です";
+        $err_msg[2] = "名前は必須です。";
+    }
+    if($_POST["firstname"]!==""){
+        mb_regex_encoding("UTF-8");
+        if(!preg_match("/^[a-zA-Zァ-ヶー一-龠]+$/",$_POST["firstname"])){// /(これより正規表現)^(行始)[0から9]｛が２～４回｝$(行末)(ここまで正規表現)/
+            $err_msg[3] = "名前はひらがなカタカナ漢字、又は半角英字で記入してください。";
+        }
     }
     if($_POST["sex"] == ""){
-        $err_msg[] = "性別は必須です";
+        $err_msg[4] = "性別は必須です。";
+    }
+    if($_POST["tel1"]!==""){
+        if(!preg_match("/^[0-9]{2,4}$/",$_POST["tel1"])){// /(これより正規表現)^(行始)[0から9]｛が２～４回｝$(行末)(ここまで正規表現)/
+            $err_msg[5] = "電話番号は半角数字を使用し、正確に記入してください。";
+        }
+    }
+    if($_POST["tel2"]!==""){
+        if(!preg_match("/^[0-9]{2,4}$/",$_POST["tel2"])){// /(これより正規表現)^(行始)[0から9]｛が２～４回｝$(行末)(ここまで正規表現)/
+            $err_msg[5] = "電話番号は半角数字を使用し、正確に記入してください。";
+        }
+    }
+    if($_POST["tel3"]!==""){
+        if(!preg_match("/^[0-9]{3,4}$/",$_POST["tel3"])){// /(これより正規表現)^(行始)[0から9]｛が３～４回｝$(行末)(ここまで正規表現)/
+            $err_msg[5] = "電話番号は半角数字を使用し、正確に記入してください。";
+        }
+    }
+    if($_POST["mail"]!==""){
+        if(!preg_match("/^[a-zA-Z0-9_.+-]+$/",$_POST["mail"])){// /(これより正規表現)^(行始)[半角英数字と_.+-]+(が1回以上)$(行末)(ここまで正規表現)/
+            $err_msg[6] = "メールアドレスは半角英数字を使用し、正確に記入してください。";
+        }
+    }
+    if($_POST["mail2"]!==""){
+        if(!preg_match("/^[a-zA-Z0-9_.+-]+[.][a-zA-Z0-9_.+-]+$/",$_POST["mail2"])){
+            // /(これより正規表現)^(行始)[半角英数字と_.+-]+(が1回以上).(ドット必須)[半角英数字と_.+-]+(が1回以上)$(行末)(ここまで正規表現)/
+            $err_msg[6] = "メールアドレスは半角英数字を使用し、正確に記入してください。";
+        }
     }
     if(count($err_msg) == 0){
         //エラーがなければresult.phpにPOST送信してページ遷移
@@ -39,7 +78,7 @@ if ($_POST["post_flg"]){//確認ボタンを押したらここが始まる
         header('HTTP/1.1 307 Temporary Redirect');
         header( "Location: result.php" ) ;
     }
-$_POST = sany($_POST);
+$_POST = sany($_POST);//サニタイズ(無害化) header("Location : result.php");かheader('HTTP/1.1 307 Temporary Redirect');が悪さするのでこれは擬似リセットやエラーでここに戻ってきた時用
 }
 error_reporting(E_ALL);//全エラーが表示されるように、エラー設定を元に戻す
 //var_dump($err_msg);
@@ -64,7 +103,7 @@ if(isset($_POST["question"])){
         $selected4 = "selected";
     }
 }else{
-    //擬似リセットボタンが作動した時用の初期値
+    //擬似リセットボタンが作動した時、初めて訪れた時用の初期値
     $selected0 = "selected";
 }
 ?>
@@ -101,7 +140,7 @@ if(isset($_POST["question"])){
                     /*    border : solid 3px #DC143C;   */
                     }
                     #errStage{
-                        margin: 0 275px;
+                        margin: 0 auto;
                         width: 800px;
                         background-color:#E7D3D6;
                         border:3px solid #A55952;
