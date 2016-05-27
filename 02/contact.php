@@ -101,7 +101,7 @@ if(isset($_POST["question"])){
                     /*    border : solid 3px #DC143C;   */
                     }
                     #errStage{
-                        margin: 0 275px;
+                        margin: 0 auto;
                         width: 800px;
                         background-color:#E7D3D6;
                         border:3px solid #A55952;
